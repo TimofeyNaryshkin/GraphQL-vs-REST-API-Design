@@ -63,6 +63,92 @@
             ordering à la carte at a restaurant versus getting a fixed menu.
           </aside>
         </section>
+        <section class="graphql">
+          <h2>GraphQL: Strongly Typed Schema</h2>
+          <ul>
+            <li class="fragment fade-in">
+              Every GraphQL API has a schema that defines types.
+            </li>
+            <li class="fragment fade-in">
+              Schemas ensure requests are valid before execution.
+            </li>
+            <li class="fragment fade-in">
+              Clients know exactly what data is available.
+            </li>
+          </ul>
+        </section>
+        <section class="graphql">
+          <h2>Simple Interface Example</h2>
+          <pre><code class="language-graphql">
+        interface Character {
+          id: ID!
+          name: String!
+        }
+        
+        type Hero implements Character {
+          id: ID!
+          name: String!
+          superpower: String!
+        }
+        
+        type Villain implements Character {
+          id: ID!
+          name: String!
+          evilPlan: String!
+        }
+          </code></pre>
+        </section>
+        <section class="graphql">
+          <h2>How We Interact with GraphQL</h2>
+          <ul>
+            <li class="fragment fade-in"><span class="highlight">Query</span> — Fetch data (like GET in REST)</li>
+            <li class="fragment fade-in"><span class="highlight">Mutation</span> — Modify data (like POST, PUT, DELETE)</li>
+            <li class="fragment fade-in"><span class="highlight">Subscription</span> — Real-time updates (like WebSocket streaming)</li>
+          </ul>
+        </section>
+        <section class="graphql">
+          <h2>Query Example</h2>
+          <pre><code class="language-graphql">
+        query {
+          user(id: "123") {
+            name
+            email
+          }
+        }
+          </code></pre>
+        </section>
+        <section class="graphql">
+          <h2>Mutation Example</h2>
+          <pre><code class="language-graphql">
+        mutation {
+          createUser(name: "Alice", email: "alice@example.com") {
+            id
+            name
+          }
+        }
+          </code></pre>
+        </section>
+        <section class="graphql">
+          <h2>Subscription Example</h2>
+          <pre><code class="language-graphql">
+        subscription {
+          newMessage(roomId: "general") {
+            id
+            content
+            sender
+          }
+        }
+          </code></pre>
+        </section>
+        <section class="graphql">
+          <h2>How Subscriptions Work</h2>
+          <ul>
+            <li class="fragment fade-in">Built on WebSocket protocol 📡</li>
+            <li class="fragment fade-in">Persistent connection between client and server</li>
+            <li class="fragment fade-in">Server pushes data to client in real-time</li>
+            <li class="fragment fade-in">No need to poll the server manually</li>
+          </ul>
+        </section>
         <section>
           <h2>Key Differences</h2>
           <table>
