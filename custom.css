@@ -1,0 +1,62 @@
+.reveal {
+  font-family: "Poppins", "Inter", sans-serif;
+  color: #eeeeee;
+  background: #1c1f26;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.reveal ul {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.reveal li {
+  margin-bottom: 0.5em;
+}
+
+.graphql {
+  background: linear-gradient(135deg, #7f00ff, #e100ff);
+  color: white;
+}
+
+.rest {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  color: black;
+}
+
+.highlight {
+  color: #00d8ff;
+  font-weight: bold;
+}
+
+.fragment.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fragment.fade-in.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.conclusion {
+  background: #0f2027;
+  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  color: white;
+}
+
+.qa {
+  background-color: #212121;
+  color: #00d8ff;
+  text-align: center;
+  font-size: 2em;
+}

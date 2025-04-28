@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+
+    <title>GraphQL vs REST API Design</title>
+
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
+
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+    <link rel="stylesheet" href="custom.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>GraphQL vs REST API Design</h1>
+          <p>Choosing the Right Approach for Modern Applications</p>
+          <p><small>Timofey Naryshkin</small></p>
+          <aside class="notes">
+            Welcome! Today, we’ll explore two major API design approaches: REST
+            and GraphQL. APIs are the unseen backbone of most modern apps. Let’s
+            discover how choosing the right API impacts performance,
+            development, and scaling.
+          </aside>
+        </section>
+        <section class="rest">
+          <h2>What is REST?</h2>
+          <ul>
+            <li class="fragment fade-in">Representational State Transfer</li>
+            <li class="fragment fade-in">Introduced by Roy Fielding (2000)</li>
+            <li class="fragment fade-in">Uses standard HTTP methods</li>
+            <li class="fragment fade-in">Resource-based URLs</li>
+          </ul>
+          <aside class="notes">
+            REST is an architectural style introduced by Roy Fielding. It uses
+            HTTP verbs — GET, POST, PUT, DELETE — to manage resources. Each URL
+            represents a resource, like /products or /users/123. Servers remain
+            stateless, meaning no client context is stored between requests.
+          </aside>
+        </section>
+        <section class="graphql">
+          <h2>What is GraphQL?</h2>
+          <ul>
+            <li class="fragment fade-in">Developed by Facebook (2012)</li>
+            <li class="fragment fade-in">
+              Client specifies exactly what data it needs
+            </li>
+            <li class="fragment fade-in">Single endpoint</li>
+            <li class="fragment fade-in">Query language for APIs</li>
+          </ul>
+          <aside class="notes">
+            GraphQL, created at Facebook, solves flexibility issues REST
+            struggles with. It lets the client ask for exactly the fields it
+            needs, no more or less, via one flexible endpoint. Think of it like
+            ordering à la carte at a restaurant versus getting a fixed menu.
+          </aside>
+        </section>
+        <section>
+          <h2>Key Differences</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Aspect</th>
+                <th>REST</th>
+                <th>GraphQL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Structure</td>
+                <td>Multiple endpoints</td>
+                <td>Single endpoint</td>
+              </tr>
+              <tr>
+                <td>Data Fetching</td>
+                <td>Fixed</td>
+                <td>Flexible</td>
+              </tr>
+              <tr>
+                <td>Versioning</td>
+                <td>Common</td>
+                <td>Rarely needed</td>
+              </tr>
+              <tr>
+                <td>Over-fetching</td>
+                <td>Possible</td>
+                <td>Minimized</td>
+              </tr>
+            </tbody>
+          </table>
+          <aside class="notes">
+            REST uses multiple, fixed endpoints. GraphQL consolidates this into
+            a single endpoint. REST often needs versioning (like v1, v2) to
+            handle breaking changes. GraphQL minimizes over-fetching, letting
+            clients request just what they need.
+          </aside>
+        </section>
+        <section>
+          <h2>REST: Strengths</h2>
+          <ul>
+            <li>Simple and widespread</li>
+            <li>Built-in HTTP caching</li>
+            <li>Fits traditional server architecture</li>
+          </ul>
+          <aside class="notes">
+            REST's main strength is simplicity. It leverages native web
+            mechanisms like HTTP caching headers — ETag, Last-Modified —
+            improving performance effortlessly. It fits neatly into traditional
+            load balancers, proxies, and firewalls.
+          </aside>
+        </section>
+        <section>
+          <h2>REST: Weaknesses</h2>
+          <ul>
+            <li>Over-fetching or under-fetching</li>
+            <li>Rigid structure</li>
+            <li>Frequent versioning needed</li>
+          </ul>
+          <aside class="notes">
+            REST's rigidity can be a drawback. Clients might fetch too much data
+            or need multiple requests to assemble a page. When APIs evolve,
+            breaking changes often force version bumps, complicating
+            maintenance.
+          </aside>
+        </section>
+        <section>
+          <h2>GraphQL: Strengths</h2>
+          <ul>
+            <li>Precise data fetching</li>
+            <li>Reduces network requests</li>
+            <li>Powerful developer tooling</li>
+          </ul>
+          <aside class="notes">
+            GraphQL empowers the client: ask exactly what you want, combine
+            requests efficiently. Tools like GraphiQL and Apollo Client make
+            development fast and introspective, with auto-generated docs and
+            testing built-in.
+          </aside>
+        </section>
+        <section>
+          <h2>GraphQL: Weaknesses</h2>
+          <ul>
+            <li>Caching is harder</li>
+            <li>Overhead on simple use cases</li>
+            <li>Needs robust security and validation</li>
+          </ul>
+          <aside class="notes">
+            GraphQL’s flexibility complicates caching. HTTP cache becomes less
+            effective because queries vary widely. Authorization must be deep —
+            not just endpoint-level, but field-level, to avoid data leaks.
+          </aside>
+        </section>
+        <section>
+          <h2>Choosing REST or GraphQL</h2>
+          <ul>
+            <li>
+              <strong>Use REST</strong> for simple CRUD, public APIs,
+              resource-based designs.
+            </li>
+            <li>
+              <strong>Use GraphQL</strong> for complex, evolving client needs,
+              and optimized mobile experiences.
+            </li>
+          </ul>
+          <aside class="notes">
+            REST is perfect for simple, predictable systems where traditional
+            caching helps. GraphQL excels where front-end demands are complex,
+            data structures are nested, and iterations are frequent.
+          </aside>
+        </section>
+        <section>
+          <h2>Real-World Examples</h2>
+          <ul>
+            <li><strong>REST:</strong> Twitter API, GitHub v3</li>
+            <li><strong>GraphQL:</strong> GitHub v4, Shopify Storefront API</li>
+          </ul>
+          <aside class="notes">
+            GitHub migrated from REST to GraphQL when their developers needed
+            more flexible, targeted queries. Shopify powers online stores
+            globally with GraphQL, enabling customized storefronts without heavy
+            backends.
+          </aside>
+        </section>
+        <section class="conclusion">
+          <h2>Conclusion</h2>
+          <ul>
+            <li class="fragment fade-in">No one-size-fits-all</li>
+            <li class="fragment fade-in">Choose based on your needs</li>
+            <li class="fragment fade-in">
+              Balance simplicity, scalability, and flexibility
+            </li>
+          </ul>
+          <aside class="notes">
+            Both REST and GraphQL are powerful — it's about matching your
+            project’s scale, complexity, and client needs. Understanding the
+            trade-offs ensures that your API isn’t just functional, but
+            efficient and future-proof.
+          </aside>
+        </section>
+        <section class="qa">
+          <h2>Thank you!</h2>
+        </section>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
+</html>
